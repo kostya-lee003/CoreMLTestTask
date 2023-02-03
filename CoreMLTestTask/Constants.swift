@@ -20,6 +20,9 @@ let person_walls = UIImage(named: "person_walls")!
 let skate = UIImage(named: "skate")!
 
 
+let commonImageRatio = 289.7 / 200.0
+
+
 // MARK: Strings
 
 /// Alert error strings

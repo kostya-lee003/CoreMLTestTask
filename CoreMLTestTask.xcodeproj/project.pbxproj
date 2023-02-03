@@ -37,7 +37,14 @@
 		C8454588298CD16B001DBE6E /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454587298CD16B001DBE6E /* UIImageExtension.swift */; };
 		C845458A298D09AA001DBE6E /* MLImageConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454589298D09AA001DBE6E /* MLImageConverter.swift */; };
 		C845458F298D155E001DBE6E /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C845458E298D155E001DBE6E /* music.mp3 */; };
-		C8454591298D16D3001DBE6E /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454590298D16D3001DBE6E /* AudioPlayerView.swift */; };
+		C8454596298D3014001DBE6E /* VideoGeneratorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454595298D3014001DBE6E /* VideoGeneratorError.swift */; };
+		C8454598298D301E001DBE6E /* AVAssetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454597298D301E001DBE6E /* AVAssetExtension.swift */; };
+		C845459A298D3024001DBE6E /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454599298D3024001DBE6E /* ImageExtension.swift */; };
+		C845459C298D3034001DBE6E /* VideoGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845459B298D3033001DBE6E /* VideoGenerator.swift */; };
+		C845459E298D31CD001DBE6E /* music_full.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C845459D298D31CC001DBE6E /* music_full.mp3 */; };
+		C84545A4298D36E9001DBE6E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84545A3298D36E9001DBE6E /* LoadingView.swift */; };
+		C84545B3298D8791001DBE6E /* AVPlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84545B2298D8791001DBE6E /* AVPlayerExtension.swift */; };
+		C84545B5298D9B77001DBE6E /* AudioSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84545B4298D9B77001DBE6E /* AudioSettingsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,7 +79,14 @@
 		C8454587298CD16B001DBE6E /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		C8454589298D09AA001DBE6E /* MLImageConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLImageConverter.swift; sourceTree = "<group>"; };
 		C845458E298D155E001DBE6E /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
-		C8454590298D16D3001DBE6E /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
+		C8454595298D3014001DBE6E /* VideoGeneratorError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoGeneratorError.swift; sourceTree = "<group>"; };
+		C8454597298D301E001DBE6E /* AVAssetExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAssetExtension.swift; sourceTree = "<group>"; };
+		C8454599298D3024001DBE6E /* ImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		C845459B298D3033001DBE6E /* VideoGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoGenerator.swift; sourceTree = "<group>"; };
+		C845459D298D31CC001DBE6E /* music_full.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_full.mp3; sourceTree = "<group>"; };
+		C84545A3298D36E9001DBE6E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		C84545B2298D8791001DBE6E /* AVPlayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerExtension.swift; sourceTree = "<group>"; };
+		C84545B4298D9B77001DBE6E /* AudioSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSettingsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +103,7 @@
 		C8454537298CC157001DBE6E = {
 			isa = PBXGroup;
 			children = (
+				C8454592298D2FF0001DBE6E /* SwiftVideoGenerator */,
 				C845458D298D1540001DBE6E /* Resources */,
 				C845455B298CCD86001DBE6E /* CoreML */,
 				C8454542298CC157001DBE6E /* CoreMLTestTask */,
@@ -147,7 +162,8 @@
 		C8454553298CC241001DBE6E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C8454590298D16D3001DBE6E /* AudioPlayerView.swift */,
+				C84545B4298D9B77001DBE6E /* AudioSettingsModel.swift */,
+				C84545A3298D36E9001DBE6E /* LoadingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -208,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				C8454587298CD16B001DBE6E /* UIImageExtension.swift */,
+				C84545B2298D8791001DBE6E /* AVPlayerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -216,8 +233,36 @@
 			isa = PBXGroup;
 			children = (
 				C845458E298D155E001DBE6E /* music.mp3 */,
+				C845459D298D31CC001DBE6E /* music_full.mp3 */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C8454592298D2FF0001DBE6E /* SwiftVideoGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				C845459B298D3033001DBE6E /* VideoGenerator.swift */,
+				C8454594298D3001001DBE6E /* Extensions */,
+				C8454593298D2FFB001DBE6E /* Errors */,
+			);
+			path = SwiftVideoGenerator;
+			sourceTree = "<group>";
+		};
+		C8454593298D2FFB001DBE6E /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				C8454595298D3014001DBE6E /* VideoGeneratorError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		C8454594298D3001001DBE6E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C8454599298D3024001DBE6E /* ImageExtension.swift */,
+				C8454597298D301E001DBE6E /* AVAssetExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +325,7 @@
 			files = (
 				C845454B298CC159001DBE6E /* Preview Assets.xcassets in Resources */,
 				C8454548298CC159001DBE6E /* Assets.xcassets in Resources */,
+				C845459E298D31CD001DBE6E /* music_full.mp3 in Resources */,
 				C845458F298D155E001DBE6E /* music.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8454584298CCDE2001DBE6E /* DeepLabV3FP16.mlmodel in Sources */,
+				C845459A298D3024001DBE6E /* ImageExtension.swift in Sources */,
 				C845457A298CCDCD001DBE6E /* CoreML+Combine.swift in Sources */,
 				C8454576298CCDCD001DBE6E /* UIImage+RawBytes.swift in Sources */,
 				C845455A298CCA76001DBE6E /* Constants.swift in Sources */,
@@ -303,18 +350,23 @@
 				C8454588298CD16B001DBE6E /* UIImageExtension.swift in Sources */,
 				C8454577298CCDCD001DBE6E /* CGImagePropertyOrientation.swift in Sources */,
 				C8454544298CC157001DBE6E /* CoreMLTestTaskApp.swift in Sources */,
+				C845459C298D3034001DBE6E /* VideoGenerator.swift in Sources */,
+				C84545A4298D36E9001DBE6E /* LoadingView.swift in Sources */,
 				C845457D298CCDCD001DBE6E /* MLMultiArray+Helpers.swift in Sources */,
 				C8454571298CCDCD001DBE6E /* MLMultiArray+Image.swift in Sources */,
 				C845457C298CCDCD001DBE6E /* CVPixelBuffer+Resize.swift in Sources */,
 				C8454556298CC27A001DBE6E /* ContentView_ViewModel.swift in Sources */,
+				C84545B3298D8791001DBE6E /* AVPlayerExtension.swift in Sources */,
 				C8454579298CCDCD001DBE6E /* Array+Extensions.swift in Sources */,
 				C8454583298CCDE2001DBE6E /* DeepLabV3.mlmodel in Sources */,
 				C845457F298CCDCE001DBE6E /* UIImage+Extensions.swift in Sources */,
+				C8454596298D3014001DBE6E /* VideoGeneratorError.swift in Sources */,
 				C8454558298CC2F4001DBE6E /* MLVideoManager.swift in Sources */,
 				C845457E298CCDCE001DBE6E /* Predictions.swift in Sources */,
 				C8454585298CCDE2001DBE6E /* DeepLabV3Int8LUT.mlmodel in Sources */,
+				C8454598298D301E001DBE6E /* AVAssetExtension.swift in Sources */,
+				C84545B5298D9B77001DBE6E /* AudioSettingsModel.swift in Sources */,
 				C8454573298CCDCD001DBE6E /* CVPixelBuffer+Rotate.swift in Sources */,
-				C8454591298D16D3001DBE6E /* AudioPlayerView.swift in Sources */,
 				C8454570298CCDCD001DBE6E /* CVPixelBuffer+Create.swift in Sources */,
 				C845457B298CCDCD001DBE6E /* NonMaxSuppression.swift in Sources */,
 				C8454575298CCDCD001DBE6E /* Math.swift in Sources */,

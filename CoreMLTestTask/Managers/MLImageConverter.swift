@@ -13,7 +13,7 @@ import Vision
 public class MLImageConverter {
     private var inputImage: UIImage?
     private var outputImage: UIImage?
-    private var currentBackgroundImage: UIImage?
+    var currentBackgroundImage: UIImage?
     
     public var imageRequestDidComplete: (UIImage) -> Void = {_ in }
     
@@ -61,6 +61,7 @@ public class MLImageConverter {
         let mask = CIImage(cgImage: outputImage!.cgImage!)
         
         self.inputImage = self.maskCompose(beginImage: beginImage, background: background, mask: mask)
+        self.currentBackgroundImage = self.inputImage
         self.imageRequestDidComplete(self.inputImage!)
     }
     
