@@ -1,41 +1,26 @@
 //
-//  MachineLearningManager.swift
+//  MLImageConverter.swift
 //  CoreMLTestTask
 //
 //  Created by Kostya Lee on 03/02/23.
 //
 
-import Foundation
-import UIKit
+import SwiftUI
 import CoreML
+import CoreImage
 import Vision
 
-public class MLVideoManager {
-    private var sourceImages = [UIImage]()
-    private var resultImages = [UIImage]()
-    private var imageDurations = [Double]()
-    
+public class MLImageConverter {
     private var inputImage: UIImage?
     private var outputImage: UIImage?
+    private var currentBackgroundImage: UIImage?
     
     public var imageRequestDidComplete: (UIImage) -> Void = {_ in }
-    
-    public func fetchSourceImage() {
-        setTemplateSources()
-        requestImageConversion(with: sourceImages[0])
-    }
-    
-    
-    /// Fetches all 'images' from setTemplateSources() additionaly executing resizeAndRotate, and then creates a video
-    public func fetchSource(completion: @escaping (_ videoURL: URL) -> Void) {
-        setTemplateSources()
-        
-    }
     
     /// Requests CoreML models to divide source image on maskedForeground and maskedBackground
     public func requestImageConversion(with sourceImage: UIImage) {
         guard let model = try? VNCoreMLModel(for: DeepLabV3(configuration: .init()).model) else { return }
-
+        
         inputImage = (sourceImage.copy() as? UIImage)
         outputImage = (sourceImage.copy() as? UIImage)
         guard let inputImage = inputImage else { return }
@@ -52,22 +37,7 @@ public class MLVideoManager {
             }
         }
     }
-    
-    /// Generates video from 'images' and 'imageDurations' using SwiftVideoGenerator
-    private func generateVideo() {
         
-    }
-    
-    /// Resizes image to fit 'size' and rotates to 'rotateOffset'
-    private func resizeAndRotate(image: UIImage, with size: CGSize, with rotateOffset: Double) {
-        
-    }
-    
-    /// Sets template images and audio that was provided in test task requirements
-    private func setTemplateSources() {
-        self.sourceImages = [group]
-    }
-    
     private func visionRequestDidComplete(request: VNRequest, error: Error?) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -105,5 +75,10 @@ public class MLVideoManager {
             return UIImage(cgImage: filteredImageRef!)
         }
         return UIImage()
+    }
+    
+    /// Resizes image to fit 'size' and rotates to 'rotateOffset'
+    private func resizeAndRotate(image: UIImage, with size: CGSize, with rotateOffset: Double) {
+        
     }
 }

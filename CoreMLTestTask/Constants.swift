@@ -8,6 +8,8 @@
 import SwiftUI
 
 // MARK: Images
+let templateImageSet = [group, person_abandonedBuilding, skate, person_garage, person_walls, person_sky, person_roof]
+
 let group = UIImage(named: "group")!
 let person_abandonedBuilding = UIImage(named: "person_abandonedBuilding")!
 let person_garage = UIImage(named: "person_garage")!

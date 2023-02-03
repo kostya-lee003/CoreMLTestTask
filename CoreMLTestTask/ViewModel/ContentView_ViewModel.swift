@@ -9,18 +9,24 @@ import SwiftUI
 
 extension ContentView {
     class ViewModel: ObservableObject {
-        let machineLearningManager = MLVideoManager()
+        @Published var listItems = templateImageSet
+        @Published var bgImage: UIImage?
+        
+        let mlVideoManager = MLVideoManager()
+        
         var viewDidLoad = false
-        
-        @Published var maskedImage: UIImage?
-        
+                
         func runVisionRequest() {
-            machineLearningManager.fetchSourceImage()
+            mlVideoManager.fetchSourceImage()
+        }
+        
+        func generateVideo() {
+            
         }
         
         func onViewDidLoad() {
-            machineLearningManager.imageRequestDidComplete = { [weak self] image in
-                self?.maskedImage = image
+            mlVideoManager.imageRequestDidComplete = { [weak self] image in
+//                self?.maskedImage = image
             }
         }
     }

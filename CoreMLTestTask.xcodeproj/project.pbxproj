@@ -12,7 +12,7 @@
 		C8454548298CC159001DBE6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8454547298CC159001DBE6E /* Assets.xcassets */; };
 		C845454B298CC159001DBE6E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C845454A298CC159001DBE6E /* Preview Assets.xcassets */; };
 		C8454556298CC27A001DBE6E /* ContentView_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454555298CC27A001DBE6E /* ContentView_ViewModel.swift */; };
-		C8454558298CC2F4001DBE6E /* MachineLearningManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454557298CC2F4001DBE6E /* MachineLearningManager.swift */; };
+		C8454558298CC2F4001DBE6E /* MLVideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454557298CC2F4001DBE6E /* MLVideoManager.swift */; };
 		C845455A298CCA76001DBE6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454559298CCA75001DBE6E /* Constants.swift */; };
 		C845456F298CCDCD001DBE6E /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845455E298CCDC5001DBE6E /* UIImage+CVPixelBuffer.swift */; };
 		C8454570298CCDCD001DBE6E /* CVPixelBuffer+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845455F298CCDC6001DBE6E /* CVPixelBuffer+Create.swift */; };
@@ -35,6 +35,9 @@
 		C8454584298CCDE2001DBE6E /* DeepLabV3FP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C8454581298CCDE1001DBE6E /* DeepLabV3FP16.mlmodel */; };
 		C8454585298CCDE2001DBE6E /* DeepLabV3Int8LUT.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C8454582298CCDE2001DBE6E /* DeepLabV3Int8LUT.mlmodel */; };
 		C8454588298CD16B001DBE6E /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454587298CD16B001DBE6E /* UIImageExtension.swift */; };
+		C845458A298D09AA001DBE6E /* MLImageConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454589298D09AA001DBE6E /* MLImageConverter.swift */; };
+		C845458F298D155E001DBE6E /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C845458E298D155E001DBE6E /* music.mp3 */; };
+		C8454591298D16D3001DBE6E /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8454590298D16D3001DBE6E /* AudioPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +47,7 @@
 		C8454547298CC159001DBE6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C845454A298CC159001DBE6E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C8454555298CC27A001DBE6E /* ContentView_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView_ViewModel.swift; sourceTree = "<group>"; };
-		C8454557298CC2F4001DBE6E /* MachineLearningManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineLearningManager.swift; sourceTree = "<group>"; };
+		C8454557298CC2F4001DBE6E /* MLVideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLVideoManager.swift; sourceTree = "<group>"; };
 		C8454559298CCA75001DBE6E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C845455E298CCDC5001DBE6E /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
 		C845455F298CCDC6001DBE6E /* CVPixelBuffer+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Create.swift"; sourceTree = "<group>"; };
@@ -67,6 +70,9 @@
 		C8454581298CCDE1001DBE6E /* DeepLabV3FP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DeepLabV3FP16.mlmodel; sourceTree = "<group>"; };
 		C8454582298CCDE2001DBE6E /* DeepLabV3Int8LUT.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DeepLabV3Int8LUT.mlmodel; sourceTree = "<group>"; };
 		C8454587298CD16B001DBE6E /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		C8454589298D09AA001DBE6E /* MLImageConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLImageConverter.swift; sourceTree = "<group>"; };
+		C845458E298D155E001DBE6E /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
+		C8454590298D16D3001DBE6E /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,7 @@
 		C8454537298CC157001DBE6E = {
 			isa = PBXGroup;
 			children = (
+				C845458D298D1540001DBE6E /* Resources */,
 				C845455B298CCD86001DBE6E /* CoreML */,
 				C8454542298CC157001DBE6E /* CoreMLTestTask */,
 				C8454541298CC157001DBE6E /* Products */,
@@ -140,6 +147,7 @@
 		C8454553298CC241001DBE6E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C8454590298D16D3001DBE6E /* AudioPlayerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -147,7 +155,8 @@
 		C8454554298CC248001DBE6E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				C8454557298CC2F4001DBE6E /* MachineLearningManager.swift */,
+				C8454557298CC2F4001DBE6E /* MLVideoManager.swift */,
+				C8454589298D09AA001DBE6E /* MLImageConverter.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -201,6 +210,14 @@
 				C8454587298CD16B001DBE6E /* UIImageExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C845458D298D1540001DBE6E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C845458E298D155E001DBE6E /* music.mp3 */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +280,7 @@
 			files = (
 				C845454B298CC159001DBE6E /* Preview Assets.xcassets in Resources */,
 				C8454548298CC159001DBE6E /* Assets.xcassets in Resources */,
+				C845458F298D155E001DBE6E /* music.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,13 +310,15 @@
 				C8454579298CCDCD001DBE6E /* Array+Extensions.swift in Sources */,
 				C8454583298CCDE2001DBE6E /* DeepLabV3.mlmodel in Sources */,
 				C845457F298CCDCE001DBE6E /* UIImage+Extensions.swift in Sources */,
-				C8454558298CC2F4001DBE6E /* MachineLearningManager.swift in Sources */,
+				C8454558298CC2F4001DBE6E /* MLVideoManager.swift in Sources */,
 				C845457E298CCDCE001DBE6E /* Predictions.swift in Sources */,
 				C8454585298CCDE2001DBE6E /* DeepLabV3Int8LUT.mlmodel in Sources */,
 				C8454573298CCDCD001DBE6E /* CVPixelBuffer+Rotate.swift in Sources */,
+				C8454591298D16D3001DBE6E /* AudioPlayerView.swift in Sources */,
 				C8454570298CCDCD001DBE6E /* CVPixelBuffer+Create.swift in Sources */,
 				C845457B298CCDCD001DBE6E /* NonMaxSuppression.swift in Sources */,
 				C8454575298CCDCD001DBE6E /* Math.swift in Sources */,
+				C845458A298D09AA001DBE6E /* MLImageConverter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
