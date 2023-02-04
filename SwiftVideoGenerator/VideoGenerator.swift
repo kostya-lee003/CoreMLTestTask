@@ -1350,13 +1350,13 @@ public class VideoGenerator: NSObject {
       if images.count != videoDurations.count {
           fatalError("Number of images and video durations must be equal!")
       }
-      var totalTime = 0.0
-      videoDurations.forEach { duration in
-        totalTime += duration
-      }
-      if totalTime != 1.0 {
-        print("Sum of all image durations must be 1.0! Description: Imagine that duration of your video is 100%, so we take 1.0 as 100% and divide it hovewer we want according to images.count. Ex: We have two images and we want the first image to have duration of 70% of the video and second - 30%. We must provide [0.7, 0.3] for videoDurations param in generate method.")
-        fatalError("Sum of all image durations must be 1.0!")
-      }
+//      var totalTime = 0.0
+//      videoDurations.forEach { duration in
+//        totalTime += duration
+//      }
+//      if totalTime != 1 {
+//        print("Sum of all image durations must be 1.0! Description: Imagine that duration of your video is 100%, so we take 1.0 as 100% and divide it hovewer we want according to images.count. Ex: We have two images and we want the first image to have duration of 70% of the video and second - 30%. We must provide [0.7, 0.3] for videoDurations param in generate method.")
+//        fatalError("Sum of all image durations must be 1.0!")
+//      }
   }
 }

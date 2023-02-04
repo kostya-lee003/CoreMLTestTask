@@ -6,26 +6,26 @@
 //
 
 import SwiftUI
+import UIKit
 import CoreML
 import CoreImage
 import Vision
+import AVFoundation
 
 public class MLImageConverter {
-    private var inputImage: UIImage?
-    private var outputImage: UIImage?
+    var inputImage: UIImage?
+    var outputImage: UIImage?
     var currentBackgroundImage: UIImage?
     
-    public var imageRequestDidComplete: (UIImage) -> Void = {_ in }
-    
     /// Requests CoreML models to divide source image on maskedForeground and maskedBackground
-    public func requestImageConversion(with sourceImage: UIImage) {
+    public func requestImageConversion(with sourceImage: UIImage, completion: @escaping (VNRequest, Error?) -> Void) {
         guard let model = try? VNCoreMLModel(for: DeepLabV3(configuration: .init()).model) else { return }
         
         inputImage = (sourceImage.copy() as? UIImage)
         outputImage = (sourceImage.copy() as? UIImage)
         guard let inputImage = inputImage else { return }
         
-        let requestForeground = VNCoreMLRequest(model: model, completionHandler: visionRequestDidComplete)
+        let requestForeground = VNCoreMLRequest(model: model, completionHandler: completion)
         requestForeground.imageCropAndScaleOption = .scaleFill
         
         DispatchQueue.global().async {
@@ -37,39 +37,34 @@ public class MLImageConverter {
             }
         }
     }
-        
-    private func visionRequestDidComplete(request: VNRequest, error: Error?) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            if let observations = request.results as? [VNCoreMLFeatureValueObservation],
-                let segmentationmap = observations.first?.featureValue.multiArrayValue {
-                
-                let segmentationMask = segmentationmap.image(min: 0, max: 1)
-
-                self.outputImage = segmentationMask!.resizedImage(for: self.inputImage!.size)!
-                
-                self.maskImage(on: person_sky)
-            }
-        }
-    }
     
-    func maskImage(on bgImage: UIImage) {
+    func maskImage(on bgImage: UIImage, completion: @escaping () -> Void) {
         if inputImage == nil || outputImage == nil { return }
         
         let beginImage = CIImage(cgImage: inputImage!.cgImage!)
-        let background = CIImage(cgImage: bgImage.cgImage!)
+        let background = bgImage.cgImage
         let mask = CIImage(cgImage: outputImage!.cgImage!)
         
         self.inputImage = self.maskCompose(beginImage: beginImage, background: background, mask: mask)
-        self.currentBackgroundImage = self.inputImage
-        self.imageRequestDidComplete(self.inputImage!)
+        completion()
     }
     
-    func maskCompose(beginImage: CIImage, background: CIImage, mask: CIImage) -> UIImage {
-        if let compositeImage = CIFilter(name: "CIBlendWithMask", parameters: [
-                                        kCIInputImageKey: beginImage,
-                                        kCIInputBackgroundImageKey: background,
-                                        kCIInputMaskImageKey: mask])?.outputImage
+    func maskCompose(beginImage: CIImage, background: CGImage?, mask: CIImage) -> UIImage {
+        
+        var params = [String : Any]()
+        if let background = background {
+            params = [
+                kCIInputImageKey: beginImage,
+                kCIInputBackgroundImageKey: CIImage(cgImage: background),
+                kCIInputMaskImageKey: mask
+            ]
+        } else {
+            params = [
+                kCIInputImageKey: beginImage,
+                kCIInputMaskImageKey: mask
+            ]
+        }
+        if let compositeImage = CIFilter(name: "CIBlendWithMask", parameters: params)?.outputImage
         {
             let ciContext = CIContext(options: nil)
             let filteredImageRef = ciContext.createCGImage(compositeImage, from: compositeImage.extent)
@@ -82,4 +77,20 @@ public class MLImageConverter {
     private func resizeAndRotate(image: UIImage, with size: CGSize, with rotateOffset: Double) {
         
     }
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) {
+
+        let maxSize = CGSize(width: newWidth, height: commonImageRatio * newWidth)
+
+        let availableRect = AVFoundation.AVMakeRect(aspectRatio: image.size, insideRect: .init(origin: .zero, size: maxSize))
+        let targetSize = availableRect.size
+
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        let renderer = UIGraphicsImageRenderer(size: targetSize, format: format)
+
+        let resized = renderer.image { (context) in
+            image.draw(in: CGRect(origin: .zero, size: targetSize))
+        }
+   }
 }
