@@ -13,4 +13,4 @@ Test task with CoreML. Implemented using CoreML, SwiftUI, AVKit, CoreImage, Swif
 ![Simulator Screen Recording - iPhone 14 Pro - 2023-02-04 at 14 29 49](https://user-images.githubusercontent.com/72404363/216760321-78982626-6e8a-494c-8b0f-240cedbe1edd.gif)
 
 Note: A bug occurs when combining images together in a single video (will be fixed later)
-#### *Bug fixed*
+#### *Bug fixed* (running only on simulator)
