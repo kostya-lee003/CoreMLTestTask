@@ -28,7 +28,7 @@ public class MLImageConverter {
         let requestForeground = VNCoreMLRequest(model: model, completionHandler: completion)
         requestForeground.imageCropAndScaleOption = .scaleFill
         
-        DispatchQueue.global().async {
+        DispatchQueue.main.async {
             let foregroundHandler = VNImageRequestHandler(cgImage: inputImage.cgImage!, options: [:])
             do {
                 try foregroundHandler.perform([requestForeground])

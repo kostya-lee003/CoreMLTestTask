@@ -39,7 +39,7 @@ struct ContentView: View {
                                         }
                                 }
                             }
-                            .tabViewStyle(.page(indexDisplayMode: .never))
+                            .tabViewStyle(.page(indexDisplayMode: .always))
                             
                             HStack {
                                 Text("Music")

@@ -19,9 +19,8 @@ public class MLVideoManager {
     
     public var videoGenerationDidComplete: (URL) -> Void = {_ in }
         
-    let imageConverter = MLImageConverter()
+//    let imageConverter = MLImageConverter()
     
-    var backgroundImage = UIImage()
     
     /// Fetches all 'images' additionaly executing resizeAndRotate using dispatchGroup, and then calls completion() in notify
     public func fetchImages(completion: @escaping () -> Void) {
@@ -32,68 +31,34 @@ public class MLVideoManager {
         
         self.resultImages.append(group)
         
-        dispatchGroup.enter()
-        imageConverter.currentBackgroundImage = group
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.imageConverter.requestImageConversion(with: person_abandonedBuilding) { [weak imageConverter = self.imageConverter] request, error in
-                if let observations = request.results as? [VNCoreMLFeatureValueObservation],
-                    let segmentationmap = observations.first?.featureValue.multiArrayValue, let imageConverter = imageConverter {
-                    
-                    let segmentationMask = segmentationmap.image(min: 0, max: 1)
-
-                    imageConverter.outputImage = segmentationMask!.resizedImage(for: imageConverter.inputImage!.size)!
-                    
-                    imageConverter.maskImage(on: group.copy() as! UIImage) {
-                        self.resultImages.append(imageConverter.inputImage!)
-                        self.resultImages.append(person_abandonedBuilding.copy() as! UIImage)
-                        dispatchGroup.leave()
-                    }
-                }
-            }
+        DispatchQueue.global().sync {
+            dispatchGroup.enter()
+            processRequestedImage(with: dispatchGroup, image: person_abandonedBuilding, onBackground: group)
         }
         
-        dispatchGroup.enter()
-        imageConverter.currentBackgroundImage = person_abandonedBuilding
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.imageConverter.requestImageConversion(with: skate) { [weak imageConverter = self.imageConverter] request, error in
-                if let observations = request.results as? [VNCoreMLFeatureValueObservation],
-                    let segmentationmap = observations.first?.featureValue.multiArrayValue, let imageConverter = imageConverter {
-                    
-                    let segmentationMask = segmentationmap.image(min: 0, max: 1)
-
-                    imageConverter.outputImage = segmentationMask!.resizedImage(for: imageConverter.inputImage!.size)!
-                    
-                    imageConverter.maskImage(on: person_abandonedBuilding.copy() as! UIImage) {
-                        self.resultImages.append(imageConverter.inputImage!)
-                        self.resultImages.append(skate.copy() as! UIImage)
-                        dispatchGroup.leave()
-                    }
-                }
-            }
+        DispatchQueue.global().sync {
+            dispatchGroup.enter()
+            processRequestedImage(with: dispatchGroup, image: skate, onBackground: person_abandonedBuilding)
         }
         
-        dispatchGroup.enter()
-        imageConverter.currentBackgroundImage = skate
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.imageConverter.requestImageConversion(with: person_sky) { [weak imageConverter = self.imageConverter] request, error in
-                if let observations = request.results as? [VNCoreMLFeatureValueObservation],
-                    let segmentationmap = observations.first?.featureValue.multiArrayValue, let imageConverter = imageConverter {
-                    
-                    let segmentationMask = segmentationmap.image(min: 0, max: 1)
-
-                    imageConverter.outputImage = segmentationMask!.resizedImage(for: imageConverter.inputImage!.size)!
-                    
-                    imageConverter.maskImage(on: skate.copy() as! UIImage) {
-                        self.resultImages.append(imageConverter.inputImage!)
-                        let skyImage = person_sky.copy() as! UIImage
-                        self.resultImages.append(skyImage)
-                        dispatchGroup.leave()
-                    }
-                }
-            }
+        DispatchQueue.global().sync {
+            dispatchGroup.enter()
+            processRequestedImage(with: dispatchGroup, image: person_sky, onBackground: skate)
+        }
+        
+        DispatchQueue.global().sync {
+            dispatchGroup.enter()
+            processRequestedImage(with: dispatchGroup, image: person_garage, onBackground: person_sky)
+        }
+        
+        DispatchQueue.global().sync {
+            dispatchGroup.enter()
+            processRequestedImage(with: dispatchGroup, image: person_jump, onBackground: person_garage)
+        }
+        
+        DispatchQueue.global().sync {
+            dispatchGroup.enter()
+            processRequestedImage(with: dispatchGroup, image: person_roof, onBackground: person_jump)
         }
         
         dispatchGroup.notify(queue: .main) {
@@ -101,18 +66,24 @@ public class MLVideoManager {
         }
     }
     
-    func appendRequestedImage(with group: DispatchGroup, image: UIImage) {
+    func processRequestedImage(with dispatchGroup: DispatchGroup, image: UIImage, onBackground bg: UIImage = UIImage()) {
+        let imageConverter = MLImageConverter()
+        imageConverter.currentBackgroundImage = skate
         
-    }
-    
-    func appendResizedImage(with group: DispatchGroup, width: CGFloat) {
-        group.enter()
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            let image = (self.resultImages.last!.copy() as! UIImage)
-            self.imageConverter.resizeImage(image: image, newWidth: width)
-            self.resultImages.append(image)
-            group.leave()
+        imageConverter.requestImageConversion(with: image) { [weak self] request, error in
+            if let observations = request.results as? [VNCoreMLFeatureValueObservation],
+                let segmentationmap = observations.first?.featureValue.multiArrayValue {
+                
+                let segmentationMask = segmentationmap.image(min: 0, max: 1)
+
+                imageConverter.outputImage = segmentationMask!.resizedImage(for: imageConverter.inputImage!.size)!
+                
+                imageConverter.maskImage(on: bg) {
+                    self?.resultImages.append(imageConverter.inputImage!)
+                    self?.resultImages.append(image)
+                    dispatchGroup.leave()
+                }
+            }
         }
     }
     
