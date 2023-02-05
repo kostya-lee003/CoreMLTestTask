@@ -1,9 +1,9 @@
 # CoreMLTestTask
 Test task with CoreML. Implemented using CoreML, SwiftUI, AVKit, CoreImage, SwiftVideoGenerator
 
-###### Test task: https://glamlabs-app.notion.site/iOS-Test-Task-f2ce942f81be45058d04a11c0d4309ea
+##### Test task: https://glamlabs-app.notion.site/iOS-Test-Task-f2ce942f81be45058d04a11c0d4309ea
 
-###### You can check my other repos regarding this one to understand more:
+##### You can check my other repos regarding this one to understand more:
 - https://github.com/kostya-lee003/SwiftVideoGeneratorUsage
 - https://github.com/kostya-lee003/CoreMLBackgroundChangeSwiftUI/tree/main
 
@@ -13,3 +13,4 @@ Test task with CoreML. Implemented using CoreML, SwiftUI, AVKit, CoreImage, Swif
 ![Simulator Screen Recording - iPhone 14 Pro - 2023-02-04 at 14 29 49](https://user-images.githubusercontent.com/72404363/216760321-78982626-6e8a-494c-8b0f-240cedbe1edd.gif)
 
 Note: A bug occurs when combining images together in a single video (will be fixed later)
+#### *Bug fixed*
