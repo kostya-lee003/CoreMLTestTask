@@ -14,4 +14,4 @@ Test task with CoreML. Implemented using CoreML, SwiftUI, AVKit, CoreImage, Swif
 
 
 Note: A bug occurs when combining images together in a single video (will be fixed later)
-#### *Bug fixed* (running only on simulator)
+## *Bug fixed* (running only on simulator)
